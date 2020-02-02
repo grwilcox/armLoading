@@ -1,12 +1,17 @@
-function plotArm(linkArray,jointArray,T)
+% Plots skeleton structure of arm. Uses endpoints of each segment
+% calculated during initialization.
+% 
+% linkArray - structure array of link parameters
+% jointArray - structure array of joint parameters
+
+function plotArm(linkArray,jointArray)
 for n = 1:numel(jointArray)
-    O = T(n).Fi*[0;0;0;1];  O = O(1:3);
-    J = T(n).Fi*[-jointArray(n).localVec;1];    J = J(1:3);
-    L = T(n).Fi*[linkArray(n).localVec;1];      L = L(1:3);
-    plot3([J(1) O(1)],[J(2) O(2)],[J(3) O(3)],'o-b','MarkerIndices',2,...
+    plot3(jointArray(n).endpoints(1,:),jointArray(n).endpoints(2,:),...
+        jointArray(n).endpoints(3,:),'o-b','MarkerIndices',2,...
         'LineWidth',1,'MarkerSize',12);
-    if (n==1) hold on; end
-    plot3([O(1) L(1)],[O(2) L(2)],[O(3) L(3)],'s-m','MarkerIndices',2,...
+    if (n==1) hold on; end  % after first plot3, or else it forces 2D axes
+    plot3(linkArray(n).endpoints(1,:),linkArray(n).endpoints(2,:),...
+        linkArray(n).endpoints(3,:),'s-m','MarkerIndices',2,...
         'LineWidth',1,'MarkerSize',12);
 end
 axis equal
