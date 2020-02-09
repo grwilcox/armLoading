@@ -10,12 +10,11 @@
 %
 % link - struct of characteristics of the single link at hand
 
-
 function link = linkBuilder(name, id, mass, length, angle, k)
 link.name = name;
 link.id = id;
 link.mass = mass;
-link.a = length;
+link.a = length*k.m_in;
 link.localVec = [link.a; 0; 0];
 link.alpha = angle;
 link.cmLocal = link.localVec/2; % TODO: add cmLocal input argument
