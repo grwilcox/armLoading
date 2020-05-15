@@ -8,7 +8,7 @@
 % n - ID specify which joint to plot loads of
 
 function plotLoads(loads,tt,jointArray,n)
-figure(2)
+figure(nextFig)
 hold on
 xlabel('time [s]')
 ylabel('Torque [N*m]')
